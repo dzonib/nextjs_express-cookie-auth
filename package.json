@@ -1,0 +1,31 @@
+{
+  "name": "nextjs_express-cookie-auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dzonib/nextjs_express-cookie-auth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dzonib/nextjs_express-cookie-auth/issues"
+  },
+  "homepage": "https://github.com/dzonib/nextjs_express-cookie-auth#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.16.4",
+    "next": "^8.0.1",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
