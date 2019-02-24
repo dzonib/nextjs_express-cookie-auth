@@ -25,7 +25,6 @@ const COOKIE_OPTIONS = {
     secure: !dev,
     // we can verify the source of the cookie
     signed: true,
-
 }
 
 const authenticate = async (email, password) => {
@@ -52,6 +51,7 @@ app.prepare().then(() => {
     server.post('/api/login', async (req, res) => {
         const { email, password } = req.body
 
+    try {
         const user = await authenticate(email, password)
 
         if (!user) {
@@ -64,20 +64,24 @@ app.prepare().then(() => {
             type: AUTH_USER_TYPE
         }
 
-        // first arg = name, second = value, third = options
+        // first arg = name, second = data, third = options
         res.cookie('token', userData, COOKIE_OPTIONS)
 
         res.json(userData)
+    } catch(e) {
+        res.status(403).json(e)
+    }
     })
 
     server.post('/api/profile', async (req, res) => {
     try {
-        const {signedCookies=  {}} = req
+        const {signedCookies =  {}} = req
+
+        console.log(JSON.stringify(signedCookies, null, 4))
 
         const {token} = signedCookies
 
-        console.log(token)
-        if (token && token.email) {
+        if (token && token.email) { 
             const {data} = await axios.get('https://jsonplaceholder.typicode.com/users')
             const userProfile = data.find(user => user.email === token.email)
 
